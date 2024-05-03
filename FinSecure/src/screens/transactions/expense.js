@@ -25,13 +25,13 @@ const Expense = ({navigation}) => {
     
     useEffect(() => {
         getCurrency(setCurrency);
-        getExpenses(setExpenses, state.user.email);
+        getExpenses(setExpenses, state.user.user.email);
     }, [focused]);
 
     // Delete Item
     const __delete = (id) => {
         deleteTransaction(id);
-        getExpenses(setExpenses, state.user.email);
+        getExpenses(setExpenses, state.user.user.email);
     }
 
     // Update Item
@@ -43,7 +43,7 @@ const Expense = ({navigation}) => {
         <View style={styles.container}>
             {expenses.length == 0 ?
                 <View style={styles.emptyContainer}>
-                    <Text style={[Typography.H3, {color: Colors.WHITE, textAlign: 'center'}]}>You haven't any expense !</Text>
+                    <Text style={[Typography.H3, {color: Colors.WHITE, textAlign: 'center'}]}>No expense added!</Text>
                 </View>
             :
                 <SwipeableFlatList

@@ -36,7 +36,7 @@ function TopTabs(props) {
                 animationEnabled: true,
             }}>
             <Tab.Screen name={routes.Income} options={{ tabBarLabel: 'Income' }} component={Income} />
-            <Tab.Screen name={routes.Expense} options={{ tabBarLabel: 'Expence' }} component={Expense} />
+            <Tab.Screen name={routes.Expense} options={{ tabBarLabel: 'Expense' }} component={Expense} />
         </Tab.Navigator>
     );
 }

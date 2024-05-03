@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     StyleSheet,
     View,
@@ -18,6 +18,7 @@ import { categories } from '../../utils/categories';
 
 import BackHeader from '../../components/Headers/BackHeader';
 import Button from '../../components/Button';
+import AuthContext from '../../context/AuthContext';
 
 const AddTransaction = ({navigation, route}) => {
     const [category, setCategory] = useState();
@@ -25,11 +26,12 @@ const AddTransaction = ({navigation, route}) => {
     const [showDate, setShowDate] = useState(false);
     const [date, setDate] = useState(new Date());
     const [amount, setAmount] = useState('');
+    const { state } = useContext(AuthContext)
 
     useEffect(() => {
         if (route.params?.item) {
             setCategory({name: route.params.item.category, icon: route.params.item.icon});
-            setDate(new Date(route.params.item.transaction_date));
+            setDate(new Date(route.params.item.date));
             setAmount((route.params.item.amount).toString());
             setIncome(route.params.item.type == 'income' ? false : true);
         }
@@ -53,10 +55,11 @@ const AddTransaction = ({navigation, route}) => {
         const stringDate = date.toLocaleDateString();
         insertTransaction({
             category: category.name,
-            icon: category.icon,
             date: stringDate,
             amount: parseFloat(amount),
-            type: income ? 'expense' : 'income'
+            transaction_type: income ? 'Expense' : 'Income',
+            email: state.user.user.email,
+            acc: '12112133141'
         });
     }
 
@@ -64,12 +67,12 @@ const AddTransaction = ({navigation, route}) => {
     const __update = () => {
         const stringDate = date.toLocaleDateString();
         updateTransaction({
-            id: route.params.item.id,
             category: category.name,
-            icon: category.icon,
             date: stringDate,
             amount: parseFloat(amount),
-            type: income ? 'expense' : 'income'
+            transaction_type: income ? 'Expense' : 'Income',
+            id: route.params?.item?._id,
+            acc: '12112133141'
         });
     }
 

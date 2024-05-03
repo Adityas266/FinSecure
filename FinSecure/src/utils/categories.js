@@ -45,3 +45,16 @@ export const categories = [
         icon: 'futbol'
     },
 ]
+
+
+export const categoryIcon = {
+    'Purchase':'shopping-cart',
+    'Restaurant':'utensils',
+    'Transport':'bus',
+    'Work': 'briefcase',
+    'Coffee':'coffee',
+    'Travel':'plane',
+    'Rent':'home',
+    'Beauty': 'spa',
+    'Sports': 'futbo'
+}

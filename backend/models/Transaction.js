@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const transactionSchema = new mongoose.Schema({
     amount: Number,
-    acc: Number,
-    date: Number,
-    category: {type: Schema.Types.ObjectId, ref: 'Category'},
-    tranaction_type: { type: String, enum: ['Income', 'Expense'], default: 'Expense' },
+    acc: String,
+    date: String,
+    category: String,
+    transaction_type: { type: String, enum: ['Income', 'Expense'], default: 'Expense' },
 });
 
 transactionSchema.index({ date: 1 });

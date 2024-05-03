@@ -17,7 +17,7 @@ const Notifications = ({navigation}) => {
 
             {/* Body */}
             <View style={styles.bodyContainer}>
-                <Text style={[Typography.TAGLINE, {textAlign: 'center', color: Colors.WHITE}]}>You haven't received any notification !</Text>
+                <Text style={[Typography.TAGLINE, {textAlign: 'center', color: Colors.WHITE}]}>You don't have notification!</Text>
             </View>
         </View>
     );

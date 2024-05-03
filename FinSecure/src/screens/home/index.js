@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     StyleSheet,
     View,
@@ -18,9 +18,11 @@ import HomeHeader from '../../components/Headers/HomeHeader';
 import TransactionCard from '../../components/Cards/TransactionCard';
 import BlockHeader from '../../components/Headers/BlockHeader';
 import PieCard from '../../components/Cards/PieCard';
+import AuthContext from '../../context/AuthContext';
 
 const Home = ({navigation}) => {
     const focused = useIsFocused();
+    const { state } = useContext(AuthContext);
 
     const [currency, setCurrency] = useState({});
     const [totalIncomes, setTotalIncomes] = useState(0);
@@ -28,10 +30,10 @@ const Home = ({navigation}) => {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        getTransactions(setTransactions);
+        getTransactions(setTransactions, state.user.user.email);
         getCurrency(setCurrency);
-        getTotalIncomes(setTotalIncomes);
-        getTotalExpenses(setTotalExpenses);
+        getTotalIncomes(setTotalIncomes, state.user.user.email);
+        getTotalExpenses(setTotalExpenses, state.user.user.email);
     }, [focused]);
 
     // Delete Item
@@ -79,7 +81,7 @@ const Home = ({navigation}) => {
                     ListEmptyComponent={() => {
                         return(
                             <View style={styles.emptyContainer}>
-                                <Text style={[Typography.TAGLINE, {color: Colors.WHITE, textAlign: 'center'}]}>You haven't any transactions !</Text>
+                                <Text style={[Typography.TAGLINE, {color: Colors.WHITE, textAlign: 'center'}]}>No transactions added!</Text>
                             </View>
                         )
                     }}

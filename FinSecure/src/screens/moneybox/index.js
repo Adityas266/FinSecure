@@ -57,7 +57,7 @@ const MoneyBox = ({navigation}) => {
             <View style={styles.bodyContainer}>
                 {moneybox.length == 0 ?
                     <View style={styles.emptyContainer}>
-                        <Text style={[Typography.H3, {color: Colors.WHITE, textAlign: 'center'}]}>You haven't any moneybox !</Text>
+                        <Text style={[Typography.H3, {color: Colors.WHITE, textAlign: 'center'}]}>Start saving for your goals!</Text>
                     </View>
                 :
                     <SwipeableFlatList

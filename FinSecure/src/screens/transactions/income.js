@@ -26,13 +26,13 @@ const Income = ({navigation, route}) => {
     
     useEffect(() => {
         getCurrency(setCurrency);
-        getIncomes(setIncomes, state.user.email);
+        getIncomes(setIncomes, state.user.user.email);
     }, [focused]);
 
     // Delete Item
     const __delete = (id) => {
         deleteTransaction(id);
-        getIncomes(setIncomes, state.user.email);
+        getIncomes(setIncomes, state.user.user.email);
     }
 
     // Update Item
@@ -44,7 +44,7 @@ const Income = ({navigation, route}) => {
         <View style={styles.container}>
             {incomes.length == 0 ?
                 <View style={styles.emptyContainer}>
-                    <Text style={[Typography.H3, {color: Colors.WHITE, textAlign: 'center'}]}>You haven't any income !</Text>
+                    <Text style={[Typography.H3, {color: Colors.WHITE, textAlign: 'center'}]}>No income added!</Text>
                 </View>
             :
                 <SwipeableFlatList

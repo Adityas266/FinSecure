@@ -18,7 +18,7 @@ const QuickActions = (item, updateItem, deleteItem) => {
                 </TouchableOpacity>
             </View>
             <View style={[styles.button, {backgroundColor: Colors.ALERT, marginLeft: 10}]}>
-                <TouchableOpacity onPress={() => deleteItem(item.id)}>
+                <TouchableOpacity onPress={() => deleteItem(item._id)}>
                     <Icon name="trash" color={Colors.WHITE} size={15} />
                 </TouchableOpacity>
             </View>

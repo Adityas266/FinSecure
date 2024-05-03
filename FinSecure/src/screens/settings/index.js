@@ -16,11 +16,11 @@ import AuthContext from '../../context/AuthContext';
 import Bar from '../../components/Bar';
 import { currencies, getCurrency, storeCurrency } from '../../utils/currency';
 
-const Settings = ({navigation}) => {
-    const {state, authContext} = React.useContext(AuthContext);
+const Settings = ({ navigation }) => {
+    const { state, authContext } = React.useContext(AuthContext);
 
     // Get User
-    const user = state.user != null ? state.user : {firstName: '', lastName: '', joined: Date.now()};
+    const user = state.user != null ? state.user : { username: '', email: '', joined: Date.now() };
     const date = new Date(user.joined);
 
     const [currency, setCurrency] = useState({});
@@ -47,54 +47,43 @@ const Settings = ({navigation}) => {
     }
 
     return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
             {/* Currency Modal */}
-            <Modal 
-                isVisible={currencyModal} >
-                    <ScrollView style={styles.modalContainer} showsVerticalScrollIndicator={false} >
-                        {currencies.map((item, index) => (
-                            <View key={index} >
-                                {index != 0 ?
-                                    <Bar padding={0.2} color={Colors.GRAY_THIN} /> 
-                                : null }
-                                <Pressable style={styles.rowContainer} onPress={() => __changeCurrency(item)} >
-                                    <Text style={[Typography.BODY, {color: Colors.WHITE}]}>{item.name}</Text>
-                                    <Text style={[Typography.TAGLINE, {color: Colors.WHITE}]}>{item.symbol}</Text>
-                                </Pressable>
-                            </View>
-                        ))}
-                    </ScrollView>
+            <Modal isVisible={currencyModal}>
+                <ScrollView style={styles.modalContainer} showsVerticalScrollIndicator={false}>
+                    {/* Currency options */}
+                </ScrollView>
             </Modal>
 
             {/* Setting Screen */}
             <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
                 {/* Header */}
                 <View style={styles.headerContainer}>
-                    <Text style={[Typography.H1, {color: Colors.WHITE, marginBottom: 10}]}>Settings</Text>
+                    <Text style={[Typography.H1, { color: Colors.WHITE, marginBottom: 10 }]}>Settings</Text>
                 </View>
 
                 {/* Body */}
                 <View style={styles.bodyContainer}>
                     {/* Account */}
                     <View>
-                        <Text style={[Typography.TAGLINE, {color: Colors.GRAY_MEDIUM, marginBottom: 10}]}>Account</Text>
+                        <Text style={[Typography.TAGLINE, { color: Colors.GRAY_MEDIUM, marginBottom: 10 }]}>Account</Text>
                         <View style={styles.blockContainer}>
-                            {/* Firstname */}
+                            {/* Username */}
                             <View style={styles.rowContainer}>
-                                <Text style={[Typography.BODY, {color: Colors.WHITE}]}>Firstname</Text>
-                                <Text style={[Typography.TAGLINE, {color: Colors.GRAY_MEDIUM}]}>{user.firstName}</Text>
+                                <Text style={[Typography.BODY, { color: Colors.WHITE }]}>Username</Text>
+                                <Text style={[Typography.TAGLINE, { color: Colors.GRAY_MEDIUM }]}>{user.username}</Text>
                             </View>
-                            <Bar padding={0.3} color={Colors.GRAY_THIN} /> 
-                            {/* Lastname */}
+                            <Bar padding={0.3} color={Colors.GRAY_THIN} />
+                            {/* Email */}
                             <View style={styles.rowContainer}>
-                                <Text style={[Typography.BODY, {color: Colors.WHITE}]}>Lastname</Text>
-                                <Text style={[Typography.TAGLINE, {color: Colors.GRAY_MEDIUM}]}>{user.lastName}</Text>
+                                <Text style={[Typography.BODY, { color: Colors.WHITE }]}>Email</Text>
+                                <Text style={[Typography.TAGLINE, { color: Colors.GRAY_MEDIUM }]}>{user.email}</Text>
                             </View>
-                            <Bar padding={0.3} color={Colors.GRAY_THIN} /> 
+                            <Bar padding={0.3} color={Colors.GRAY_THIN} />
                             {/* Joined at */}
                             <View style={styles.rowContainer}>
-                                <Text style={[Typography.BODY, {color: Colors.WHITE}]}>Joined</Text>
-                                <Text style={[Typography.TAGLINE, {color: Colors.GRAY_MEDIUM}]}>{date.toDateString()}</Text>
+                                <Text style={[Typography.BODY, { color: Colors.WHITE }]}>Joined</Text>
+                                <Text style={[Typography.TAGLINE, { color: Colors.GRAY_MEDIUM }]}>{date.toDateString()}</Text>
                             </View>
                         </View>
                     </View>
@@ -128,7 +117,6 @@ const Settings = ({navigation}) => {
                                 <View>
                                 <Text style={{fontSize: 10, fontWeight: '600'}}>Vaibhav Ashta</Text>
                                 <Text style={{fontSize: 10,fontWeight: '600'}}>Aditya Shukla</Text>
-                                <Text style={{fontSize: 10,fontWeight: '600'}}>AyushKumar Yadav</Text>
                                 </View>
                             </Pressable>
                         </View>

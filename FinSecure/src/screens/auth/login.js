@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     StyleSheet,
     Alert,
@@ -18,7 +18,8 @@ import axios from 'axios';
 import { backendUrl } from '../../dbHelpers/transactionHelper';
 
 const Login = ({navigation}) => {
-    const navigation = useNavigation();
+
+    const {authContext} = useContext(AuthContext);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -67,9 +68,9 @@ const Login = ({navigation}) => {
             try {
                 const response = await axios.request(options);
                 if (response.status===200) {
-                    const res = await axios.request(`${backendUrl}/auth/profile/`);
-                    const data = await res.json();
-                    const { user, userInfo } = data.data;
+                    const res = await axios.get(`${backendUrl}/auth/${email}`);
+                    const data = res.data;
+                    const { user, userInfo } = data;
                     const userDetails = {
                         user,
                         userInfo
@@ -129,10 +130,19 @@ const Login = ({navigation}) => {
                         value={password}
                         placeholder='********'
                         textContentType='password'
+                        secureTextEntry
                         onChangeText={(text) => setPassword(text)}
                         style={[styles.input, Typography.BODY]}
                         placeholderTextColor={Colors.GRAY_MEDIUM} />
                 </View>
+            </View>
+
+            <View style={{ alignItems: 'center', marginTop: 20 }}>
+                <TouchableOpacity onPress={() => setIsLogin(prev => !prev)}>
+                    <Text style={{ color:'white', textAlign: 'center', textDecorationLine: 'underline'}}>
+                        {isLogin? 'New to FinSecure? Register' : 'Already had an account? Login'}
+                    </Text>
+                </TouchableOpacity>
             </View>
 
             {/* Footer */}
@@ -142,14 +152,6 @@ const Login = ({navigation}) => {
                     onPress={() => isLogin? __login() : __register()} />
             </View>
 
-            <View style={{ alignItems: 'center', marginTop: 20 }}>
-                <TouchableOpacity onPress={() => setIsLogin(prev => !prev)}>
-                    <Text style={{ textAlign: 'center', textDecorationStyle: 'underline'}}>
-                        {isLogin? 'New to FinSecure? Register' : 'Already had an account? Login'}
-                    </Text>
-                </TouchableOpacity>
-
-            </View>
         </View>
     );
 };

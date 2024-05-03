@@ -22,7 +22,7 @@ const GetStarted = ({navigation, route}) => {
                     style={{ width: 200, height: 200}}
                     source={require('../../assets/images/logo.png')} />
                 
-                <Text style={[Typography.H3, styles.title]}>Welcome !</Text>
+                <Text style={[Typography.H3, styles.title]}>Welcome!</Text>
                 <Text style={[Typography.TAGLINE, styles.title, {marginTop: 10}]}>Explore the interactive, secure and fast money planner and tracker app with highly expected data privacy for every user.</Text>
                 
             </View>
