@@ -37,7 +37,7 @@ Clone the repo
 Install Waletty with npm
 
 ```bash
-  cd Waletty
+  cd Finsecure
   npm install
 ```
     
